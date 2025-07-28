@@ -1,23 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => setMenuOpen((o) => !o);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 600) {
+        setMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <nav className="navbar">
-      <div className="navbar-left">
-        <a href="#gallery">Portfolio</a>
-        <a href="#kontakt">Kontakt</a>
-      </div>
       <div className="navbar-center">Daniel Rusnok Portfolio</div>
-      <div className="navbar-right">
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
-            alt="Instagram"
-            className="instagram-icon"
-          />
-        </a>
-        <a href="mailto:Daniel.rusnok@gmail.com">Daniel.rusnok@gmail.com</a>
+      <button className="burger" onClick={toggleMenu} aria-label="toggle menu">
+        <span className="line" />
+        <span className="line" />
+        <span className="line" />
+      </button>
+      <div className={`navbar-menu ${menuOpen ? 'open' : ''}`}>
+        <div className="navbar-left">
+          <a href="#gallery" onClick={() => setMenuOpen(false)}>
+            Portfolio
+          </a>
+          <a href="#kontakt" onClick={() => setMenuOpen(false)}>
+            Kontakt
+          </a>
+        </div>
+        <div className="navbar-right">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
+              alt="Instagram"
+              className="instagram-icon"
+            />
+          </a>
+          <a href="mailto:Daniel.rusnok@gmail.com" onClick={() => setMenuOpen(false)}>
+            Daniel.rusnok@gmail.com
+          </a>
+        </div>
       </div>
     </nav>
   );
