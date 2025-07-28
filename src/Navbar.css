@@ -1,0 +1,25 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f8f8f8;
+}
+
+.navbar-left a,
+.navbar-right a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar-center {
+  font-weight: bold;
+}
+
+.instagram-icon {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
