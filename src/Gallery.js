@@ -13,7 +13,10 @@ export default function Gallery() {
   return (
     <div id="gallery" className="gallery">
       {images.map((src, index) => (
-        <img key={index} src={src} alt={`Gallery pic ${index + 1}`} />
+        <div className="gallery-item" key={index}>
+          <h3>Foto {index + 1}</h3>
+          <img src={src} alt={`Gallery pic ${index + 1}`} />
+        </div>
       ))}
     </div>
   );

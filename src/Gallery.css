@@ -6,7 +6,11 @@
   margin-top: 20px;
 }
 
-.gallery img {
+.gallery-item {
+  text-align: center;
+}
+
+.gallery-item img {
   width: 100%;
   max-width: 150px;
   height: auto;
@@ -14,8 +18,19 @@
   border-radius: 4px;
 }
 
+@media (max-width: 600px) {
+  .gallery {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gallery-item img {
+    max-width: 100%;
+  }
+}
+
 @media (min-width: 600px) {
-  .gallery img {
+  .gallery-item img {
     width: 150px;
     height: 100px;
   }
