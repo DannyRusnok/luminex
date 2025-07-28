@@ -11,7 +11,7 @@ export default function Gallery() {
   ];
 
   return (
-    <div className="gallery">
+    <div id="gallery" className="gallery">
       {images.map((src, index) => (
         <img key={index} src={src} alt={`Gallery pic ${index + 1}`} />
       ))}
