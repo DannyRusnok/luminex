@@ -36,5 +36,5 @@ To use your own Sanity project:
    npm start
    ```
 
-The `Posts` component demonstrates how to query posts from Sanity and display
-their titles in the app.
+The `Gallery` component renders a simple image gallery below the heading on the
+main page.
