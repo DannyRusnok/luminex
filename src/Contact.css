@@ -46,3 +46,9 @@ button[type="submit"] {
   cursor: pointer;
   border-radius: 4px;
 }
+
+@media (max-width: 600px) {
+  button[type="submit"] {
+    width: 100%;
+  }
+}
