@@ -7,8 +7,16 @@
 }
 
 .gallery img {
-  width: 150px;
-  height: 100px;
+  width: 100%;
+  max-width: 150px;
+  height: auto;
   object-fit: cover;
   border-radius: 4px;
+}
+
+@media (min-width: 600px) {
+  .gallery img {
+    width: 150px;
+    height: 100px;
+  }
 }

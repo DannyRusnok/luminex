@@ -1,9 +1,16 @@
 .navbar {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
   background-color: #f8f8f8;
+}
+
+.navbar-left,
+.navbar-right {
+  display: flex;
+  align-items: center;
 }
 
 .navbar-left a,
@@ -15,6 +22,7 @@
 
 .navbar-center {
   font-weight: bold;
+  text-align: center;
 }
 
 .instagram-icon {
@@ -22,4 +30,23 @@
   height: 24px;
   vertical-align: middle;
   margin-right: 5px;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar-left,
+  .navbar-right {
+    width: 100%;
+    justify-content: center;
+    margin: 5px 0;
+  }
+
+  .navbar-center {
+    flex-basis: 100%;
+    margin: 5px 0;
+  }
 }
