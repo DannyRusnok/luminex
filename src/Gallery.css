@@ -32,6 +32,11 @@
   backface-visibility: hidden;
 }
 
+.flip-card .front {
+  position: relative;
+  display: block;
+}
+
 .flip-card .back {
   position: absolute;
   top: 0;
@@ -62,6 +67,10 @@
   .gallery {
     flex-direction: column;
     align-items: center;
+  }
+
+  .gallery-item {
+    width: 100%;
   }
 
   .gallery-item img {

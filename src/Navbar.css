@@ -64,10 +64,16 @@
     flex-direction: column;
     width: 100%;
     margin-top: 10px;
+    min-height: calc(100vh - 60px);
   }
 
   .navbar-menu.open {
     display: flex;
+    align-items: flex-start;
+  }
+
+  .navbar-right {
+    margin-top: auto;
   }
 
   .navbar-left,
