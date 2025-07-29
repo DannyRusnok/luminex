@@ -1,40 +1,58 @@
 # Luminex React App
 
-This repository contains a minimal React project scaffolded without internet access. To run the project locally after installing dependencies, use the following commands:
+Modern React galerie s integrací Sanity CMS
+
+## Funkce
+
+- **React 18 + TypeScript**: Moderní stack, typová bezpečnost
+- **styled-components**: Vlastní stylování komponent
+- **Sanity.io CMS**: Dynamické načítání obrázků, popisků a tagů
+- **Galerie & Modal**: Responzivní galerie s modálním carousel zobrazením obrázků a popisků
+- **Skeleton Loading**: Plynulé načítání obrázků s efektem skeletonu
+- **Tagy**: Každý obrázek může mít více tagů
+- **Kontaktní formulář**: Odesílání e-mailu přes mailto, validace polí
+- **SocialRow**: Odkazy na sociální sítě (Facebook, X, Instagram, Email)
+
+## Struktura projektu
+
+- `src/components/Gallery/` – Galerie obrázků, skeleton, tagy
+- `src/components/ModalCarousel/` – Modal s carouselem a popiskem obrázku
+- `src/components/Contact/` – Kontaktní formulář a SocialRow
+- `src/components/SocialRow/` – Ikony a odkazy na sítě
+- `src/components/Navbar/`, `Footer/`, `Title/` – Navigace, patička, titulek
+- `src/sanityClient.ts` – Konfigurace Sanity klienta
+- `.env.local` – Citlivé údaje (ID projektu, token)
+
+## Nastavení Sanity
+
+1. Vytvořte soubor `.env.local` v rootu projektu:
+   ```env
+   REACT_APP_SANITY_PROJECT_ID=yourProjectId
+   REACT_APP_SANITY_TOKEN=yourSanityToken
+   ```
+2. Ujistěte se, že v Sanity máte typ dokumentu `imageAsset` s polem `image`, `title`, `description`, `tags`.
+
+## Spuštění projektu
 
 ```bash
 npm install
 npm start
 ```
 
-The project was initialized manually and uses `react-scripts` for development and build tasks.
+## Build
 
-## Sanity CMS Integration
+```bash
+npm run build
+```
 
-The project now includes a basic setup for fetching content from
-[Sanity.io](https://www.sanity.io). The `@sanity/client` dependency is listed in
-`package.json` and the `src/sanityClient.js` file configures the connection.
+## Vývojové závislosti
 
-To use your own Sanity project:
+- `react-scripts` (CRA)
+- `@sanity/client`
+- `styled-components`, `@types/styled-components`
+- `eslint`, `eslint-config-react-app`, `prettier`
+- `typescript`
 
-1. Create a `.env` file at the project root and define the following variables:
+## Licence
 
-   ```bash
-   REACT_APP_SANITY_PROJECT_ID=yourProjectId
-   REACT_APP_SANITY_DATASET=production
-   ```
-
-2. Install dependencies (requires internet access):
-
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-
-   ```bash
-   npm start
-   ```
-
-The `Gallery` component renders a simple image gallery below the heading on the
-main page.
+MIT
