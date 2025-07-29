@@ -10,8 +10,12 @@ import {
   Caption,
 } from './styled';
 
+interface ImageObj {
+  url: string;
+  description?: string;
+}
 interface Props {
-  images: string[];
+  images: ImageObj[];
   startIndex: number;
   onClose: () => void;
 }
@@ -64,8 +68,8 @@ export default function ModalCarousel({ images, startIndex, onClose }: Props) {
           </NavButton>
           {!loaded[current] && <ModalImageSkeleton />}
           <ModalImage
-            src={images[current]}
-            alt={`Gallery pic ${current + 1}`}
+            src={images[current].url}
+            alt={images[current].description || `Gallery pic ${current + 1}`}
             style={
               !loaded[current]
                 ? {
@@ -83,7 +87,7 @@ export default function ModalCarousel({ images, startIndex, onClose }: Props) {
             &gt;
           </NavButton>
         </Carousel>
-        <Caption>Popis obrázku {current + 1}</Caption>
+        <Caption>{images[current].description}</Caption>
       </ModalBox>
     </ModalOverlay>
   );
