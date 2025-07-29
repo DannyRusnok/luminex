@@ -8,6 +8,7 @@ export const GalleryWrapper = styled.div`
   width: 100%;
   margin: 20px auto 0 auto;
   gap: 20px;
+  scroll-margin-top: 82px; /* výška tvého navbaru */
 `;
 
 export const GalleryItem = styled.div`
