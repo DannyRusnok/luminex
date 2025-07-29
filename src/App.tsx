@@ -1,8 +1,8 @@
 import React from 'react';
-import Gallery from './Gallery';
-import Navbar from './Navbar';
-import Contact from './Contact';
-import Footer from './Footer';
+import Gallery from './components/Gallery/Gallery';
+import Navbar from './components/Navbar/Navbar';
+import Contact from './components/Contact/Contact';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Gallery.css';
-import ModalCarousel from './ModalCarousel';
+import ModalCarousel from '../ModalCarousel/ModalCarousel';
 
 // Simple component that renders a gallery of images.
 export default function Gallery() {
