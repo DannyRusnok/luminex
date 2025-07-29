@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './Gallery.css';
 import ModalCarousel from './ModalCarousel.js';
 
@@ -16,15 +16,34 @@ export default function Gallery() {
   );
   const [modalIndex, setModalIndex] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
+  const flipTimeouts = useRef(images.map(() => null));
+
+  useEffect(() => {
+    return () => {
+      flipTimeouts.current.forEach((t) => t && clearTimeout(t));
+    };
+  }, []);
+
+  const FLIP_DELAY = 250;
 
   const handleClick = (index, e) => {
     if (e.detail === 2) {
+      if (flipTimeouts.current[index]) {
+        clearTimeout(flipTimeouts.current[index]);
+        flipTimeouts.current[index] = null;
+      }
       setModalIndex(index);
       setModalOpen(true);
     } else {
-      setFlippedStates((prev) =>
-        prev.map((f, i) => (i === index ? !f : f))
-      );
+      if (flipTimeouts.current[index]) {
+        clearTimeout(flipTimeouts.current[index]);
+      }
+      flipTimeouts.current[index] = setTimeout(() => {
+        setFlippedStates((prev) =>
+          prev.map((f, i) => (i === index ? !f : f))
+        );
+        flipTimeouts.current[index] = null;
+      }, FLIP_DELAY);
     }
   };
 
