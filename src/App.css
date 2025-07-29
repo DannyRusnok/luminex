@@ -1,3 +1,16 @@
 .App {
   text-align: center;
 }
+
+.mobile-title {
+  display: none;
+  font-size: 1.5rem;
+  margin: 10px 0;
+  color: #2196f3;
+}
+
+@media (max-width: 600px) {
+  .mobile-title {
+    display: block;
+  }
+}
