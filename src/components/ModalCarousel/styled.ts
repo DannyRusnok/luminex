@@ -19,6 +19,8 @@ export const ModalBox = styled.div`
   padding: 0;
   width: 100vw;
   height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
   max-width: 100vw;
   max-height: 100vh;
   overflow-y: auto;
@@ -30,7 +32,9 @@ export const ModalBox = styled.div`
 
   @media (min-width: 900px) {
     width: 900px;
+    min-width: 900px;
     height: auto;
+    min-height: 90vh;
     max-width: 900px;
     max-height: 90vh;
     border-radius: 16px;
@@ -40,20 +44,13 @@ export const ModalBox = styled.div`
 `;
 
 export const ModalImage = styled.img`
-  width: 100vw;
-  max-width: 800px;
+  width: auto;
   height: auto;
-  max-height: 70vh;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
   display: block;
   margin: 0 auto;
-
-  @media (min-width: 900px) {
-    width: 800px;
-    max-width: 800px;
-    min-width: 800px;
-    max-height: 70vh;
-  }
 `;
 
 export const CloseButton = styled.button`
@@ -68,8 +65,10 @@ export const CloseButton = styled.button`
 
 export const Carousel = styled.div`
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
 `;
 
 export const NavButton = styled.button`
@@ -78,8 +77,23 @@ export const NavButton = styled.button`
   font-size: 24px;
   cursor: pointer;
   padding: 0 10px;
+
+  @media (max-width: 899px) {
+    display: none;
+  }
 `;
 
 export const Caption = styled.p`
-  margin-top: 10px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 16px 0 16px 0;
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 1.1rem;
+  text-align: center;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  z-index: 2;
 `;
