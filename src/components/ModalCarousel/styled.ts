@@ -16,16 +16,43 @@ export const ModalOverlay = styled.div`
 export const ModalBox = styled.div`
   position: relative;
   background: #fff;
-  padding: 20px;
-  max-width: 90%;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
   max-height: 100vh;
   overflow-y: auto;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: 900px) {
+    width: 900px;
+    height: auto;
+    max-width: 900px;
+    max-height: 90vh;
+    border-radius: 16px;
+    padding: 32px 0 32px 0;
+    box-sizing: border-box;
+  }
 `;
 
 export const ModalImage = styled.img`
-  max-width: 80vw;
-  max-height: 60vh;
+  width: 100vw;
+  max-width: 800px;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+
+  @media (min-width: 900px) {
+    width: 800px;
+    max-width: 800px;
+    max-height: 70vh;
+  }
 `;
 
 export const CloseButton = styled.button`

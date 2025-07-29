@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import ModalImageSkeleton from './ModalImageSkeleton';
 import {
   ModalOverlay,
   ModalBox,
@@ -17,6 +18,7 @@ interface Props {
 
 export default function ModalCarousel({ images, startIndex, onClose }: Props) {
   const [current, setCurrent] = useState<number>(startIndex);
+  const [loaded, setLoaded] = useState<boolean[]>(images.map(() => false));
   const startXRef = useRef<number>(0);
 
   const next = () => setCurrent((c) => (c + 1) % images.length);
@@ -46,6 +48,10 @@ export default function ModalCarousel({ images, startIndex, onClose }: Props) {
     }
   };
 
+  const handleImgLoad = (idx: number) => {
+    setLoaded((prev) => prev.map((v, i) => (i === idx ? true : v)));
+  };
+
   return (
     <ModalOverlay onClick={onClose}>
       <ModalBox onClick={(e) => e.stopPropagation()}>
@@ -56,7 +62,23 @@ export default function ModalCarousel({ images, startIndex, onClose }: Props) {
           <NavButton onClick={prev} aria-label="previous">
             &lt;
           </NavButton>
-          <ModalImage src={images[current]} alt={`Gallery pic ${current + 1}`} />
+          {!loaded[current] && <ModalImageSkeleton />}
+          <ModalImage
+            src={images[current]}
+            alt={`Gallery pic ${current + 1}`}
+            style={
+              !loaded[current]
+                ? {
+                    opacity: 0,
+                    position: 'absolute',
+                    pointerEvents: 'none',
+                    width: 1,
+                    height: 1,
+                  }
+                : { opacity: 1, position: 'static' }
+            }
+            onLoad={() => handleImgLoad(current)}
+          />
           <NavButton onClick={next} aria-label="next">
             &gt;
           </NavButton>
