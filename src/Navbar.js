@@ -37,11 +37,6 @@ export default function Navbar() {
             Kontakt
           </a>
         </div>
-        <div className="navbar-right">
-          <a href="mailto:Daniel.rusnok@gmail.com" onClick={() => setMenuOpen(false)}>
-            Daniel.rusnok@gmail.com
-          </a>
-        </div>
       </div>
     </nav>
   );

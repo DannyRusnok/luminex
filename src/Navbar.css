@@ -14,22 +14,23 @@
   align-items: center;
 }
 
-.navbar-left,
-.navbar-right {
+.navbar-left {
   display: flex;
   align-items: center;
 }
 
-.navbar-left a,
-.navbar-right a {
+.navbar-left a {
   margin: 0 10px;
   text-decoration: none;
   color: inherit;
 }
 
 .navbar-center {
+  flex: 1;
   font-weight: bold;
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 
@@ -85,20 +86,14 @@
     align-items: flex-start;
   }
 
-  .navbar-right {
-    margin-top: auto;
-  }
-
-  .navbar-left,
-  .navbar-right {
+  .navbar-left {
     flex-direction: column;
     width: 100%;
     justify-content: center;
     margin: 5px 0;
   }
 
-  .navbar-left a,
-  .navbar-right a {
+  .navbar-left a {
     margin: 10px 0;
     display: block;
     width: 100%;

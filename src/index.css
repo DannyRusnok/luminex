@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto+Slab:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 body {
   margin: 0;
@@ -10,7 +10,3 @@ h1 {
   font-family: 'Pacifico', cursive;
 }
 
-h2,
-h3 {
-  font-family: 'Roboto Slab', serif;
-}
