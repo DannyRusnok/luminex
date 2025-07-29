@@ -2,24 +2,21 @@ import styled from 'styled-components';
 
 export const GalleryWrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-  @media (max-width: 600px) {
-    flex-direction: column;
-    align-items: center;
-  }
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  width: 100%;
+  margin: 20px auto 0 auto;
+  gap: 20px;
 `;
 
 export const GalleryItem = styled.div`
   text-align: center;
   perspective: 1000px;
   position: relative;
-  width: auto;
-  @media (max-width: 600px) {
-    width: 100%;
-  }
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 `;
 
 export const FlipCard = styled.div<{ $flipped: boolean }>`
@@ -30,21 +27,14 @@ export const FlipCard = styled.div<{ $flipped: boolean }>`
 `;
 
 export const CardFront = styled.img`
-  position: relative;
   display: block;
   width: 100%;
-  max-width: 150px;
+  max-width: 800px;
   height: auto;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 8px;
+  margin: 0 auto 1rem auto;
   backface-visibility: hidden;
-  @media (max-width: 600px) {
-    max-width: 100%;
-  }
-  @media (min-width: 600px) {
-    width: 150px;
-    height: 100px;
-  }
 `;
 
 export const CardBack = styled.div`

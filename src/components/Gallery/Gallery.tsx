@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { GalleryWrapper, GalleryItem, FlipCard, CardFront, CardBack } from './styled';
+import ImageSkeleton from './ImageSkeleton';
 import ModalCarousel from '../ModalCarousel/ModalCarousel';
 
 // Simple component that renders a gallery of images.
@@ -43,6 +44,12 @@ export default function Gallery() {
     }
   };
 
+  const [loaded, setLoaded] = useState<boolean[]>(images.map(() => false));
+
+  const handleImgLoad = (idx: number) => {
+    setLoaded((prev) => prev.map((v, i) => (i === idx ? true : v)));
+  };
+
   return (
     <>
       <GalleryWrapper id="gallery">
@@ -52,7 +59,24 @@ export default function Gallery() {
             <GalleryItem key={index} onClick={(e) => handleClick(index, e)}>
               <h3>Foto {index + 1}</h3>
               <FlipCard $flipped={flipped}>
-                <CardFront src={src} alt={`Gallery pic ${index + 1}`} />
+                {!loaded[index] && <ImageSkeleton />}
+                <CardFront
+                  src={src}
+                  alt={`Gallery pic ${index + 1}`}
+                  style={
+                    !loaded[index]
+                      ? {
+                          opacity: 0,
+                          position: 'absolute',
+                          pointerEvents: 'none',
+                          width: 1,
+                          height: 1,
+                        }
+                      : { opacity: 1, position: 'static' }
+                  }
+                  loading="lazy"
+                  onLoad={() => handleImgLoad(index)}
+                />
                 <CardBack>
                   <p>Popis obrázku {index + 1}</p>
                 </CardBack>
