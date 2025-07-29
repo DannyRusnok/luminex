@@ -5,6 +5,12 @@
   padding: 10px 20px;
   background-color: #9c27b0;
   color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-sizing: border-box;
 }
 
 .navbar-menu {
@@ -78,7 +84,7 @@
     flex-direction: column;
     width: 100%;
     margin-top: 10px;
-    min-height: calc(100vh - 60px);
+    height: auto;
   }
 
   .navbar-menu.open {
