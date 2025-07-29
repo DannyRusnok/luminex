@@ -22,11 +22,11 @@ export const GalleryItem = styled.div`
   }
 `;
 
-export const FlipCard = styled.div<{flipped: boolean}>`
+export const FlipCard = styled.div<{ $flipped: boolean }>`
   position: relative;
   transition: transform 0.6s;
   transform-style: preserve-3d;
-  ${({ flipped }) => flipped && 'transform: rotateY(180deg);'}
+  ${({ $flipped }) => $flipped && 'transform: rotateY(180deg);'}
 `;
 
 export const CardFront = styled.img`

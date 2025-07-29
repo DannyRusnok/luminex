@@ -66,7 +66,7 @@ export default function Gallery() {
           return (
             <GalleryItem key={index} onClick={(e) => handleClick(index, e)}>
               <h3>Foto {index + 1}</h3>
-              <FlipCard flipped={flipped}>
+              <FlipCard $flipped={flipped}>
                 <CardFront src={src} alt={`Gallery pic ${index + 1}`} />
                 <CardBack>
                   <p>Popis obrázku {index + 1}</p>

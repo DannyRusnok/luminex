@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import {
   NavbarWrapper,
   Burger,
-  Line,
   NavbarMenu,
   NavbarLeft,
   NavbarLink
 } from './styled';
+import { CloseIcon } from '../CloseIcon';
+import { HamburgerIcon } from '../HamburgerIcon';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -26,11 +27,9 @@ export default function Navbar() {
   return (
     <NavbarWrapper>
       <Burger onClick={toggleMenu} aria-label="toggle menu">
-        <Line />
-        <Line />
-        <Line />
+        {menuOpen ? <CloseIcon /> : <HamburgerIcon />}
       </Burger>
-      <NavbarMenu style={menuOpen ? { display: 'flex', flexDirection: 'column', alignItems: 'flex-start' } : {}}>
+      <NavbarMenu menuOpen={menuOpen}>
         <NavbarLeft>
           <NavbarLink href="#gallery" onClick={() => setMenuOpen(false)}>
             Portfolio

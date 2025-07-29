@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const ContactSection = styled.section`
   margin: 40px auto 0;
-  max-width: 500px;
   padding: 20px;
   border: 1px solid #9c27b0;
   border-radius: 4px;
@@ -19,6 +18,12 @@ export const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
   text-align: left;
+  max-width: 500px;
+  
+  @media (max-width: 600px) {
+    text-align: center;
+    max-width: unset;
+  }
 `;
 
 export const Label = styled.label`

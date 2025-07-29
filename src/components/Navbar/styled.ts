@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const NavbarWrapper = styled.nav`
   display: flex;
@@ -27,15 +27,14 @@ export const Burger = styled.button`
   }
 `;
 
-export const Line = styled.span`
-  width: 25px;
-  height: 3px;
-  background-color: #fff;
-  margin: 4px 0;
-  transition: transform 0.3s, opacity 0.3s;
+const NavbarOpenCss = css`
+  display: 'flex';
+  flexDirection: 'column';
+  alignItems: 'flex-start';
 `;
 
-export const NavbarMenu = styled.div`
+export const NavbarMenu = styled.div<{ menuOpen: boolean }>`
+  ${(props) => (props.menuOpen ? NavbarOpenCss : '')}
   display: flex;
   flex-grow: 1;
   justify-content: space-between;
@@ -61,7 +60,15 @@ export const NavbarLeft = styled.div`
 `;
 
 export const NavbarLink = styled.a`
-  margin: 0 10px;
   text-decoration: none;
   color: inherit;
+  text-align: right;
+  font-size: 1.2rem;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    border-bottom: 2px solid white;
+  }
 `;
