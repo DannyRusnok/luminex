@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  background-color: #2196f3;
+  background-color: #9c27b0;
   color: #fff;
 }
 
@@ -32,12 +32,7 @@
   text-align: center;
 }
 
-.instagram-icon {
-  width: 24px;
-  height: 24px;
-  vertical-align: middle;
-  margin-right: 5px;
-}
+
 
 .burger {
   display: none;
@@ -53,6 +48,19 @@
   height: 3px;
   background-color: #fff;
   margin: 4px 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.burger.open .line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burger.open .line:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.open .line:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
 @media (max-width: 600px) {
@@ -92,5 +100,9 @@
   .navbar-left a,
   .navbar-right a {
     margin: 10px 0;
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    font-size: 1.2rem;
   }
 }
