@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Gallery.css';
-import ModalCarousel from './ModalCarousel.js';
+import ModalCarousel from './ModalCarousel';
 
 // Simple component that renders a gallery of images.
 export default function Gallery() {
@@ -11,12 +11,14 @@ export default function Gallery() {
     'https://picsum.photos/id/1035/300/200'
   ];
 
-  const [flippedStates, setFlippedStates] = useState(
+  const [flippedStates, setFlippedStates] = useState<boolean[]>(
     images.map(() => false)
   );
   const [modalIndex, setModalIndex] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
-  const flipTimeouts = useRef(images.map(() => null));
+  const flipTimeouts = useRef<(ReturnType<typeof setTimeout> | null)[]>(
+    images.map(() => null)
+  );
 
   useEffect(() => {
     return () => {
@@ -26,7 +28,10 @@ export default function Gallery() {
 
   const FLIP_DELAY = 250;
 
-  const handleClick = (index, e) => {
+  const handleClick = (
+    index: number,
+    e: React.MouseEvent<HTMLDivElement>
+  ) => {
     if (e.detail === 2) {
       if (flipTimeouts.current[index]) {
         clearTimeout(flipTimeouts.current[index]);
