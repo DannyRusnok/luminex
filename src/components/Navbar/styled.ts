@@ -35,6 +35,7 @@ export const Burger = styled.button`
   display: flex;
   flex-direction: column;
   border: none;
+  border-bottom: 1px solid #9c27b0;
   padding: 0;
   cursor: pointer;
   background-color: white;

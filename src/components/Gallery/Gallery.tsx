@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { GalleryWrapper, GalleryItem } from './styled';
+import { GalleryWrapper, GalleryItem, TagsWrapper } from './styled';
 import ImageSkeleton from './ImageSkeleton';
 import ModalCarousel from '../ModalCarousel/ModalCarousel';
 import GalleryImage from '../GalleryImage/GalleryImage';
+import GalleryTag from '../GalleryTag/GalleryTag';
+import styled from 'styled-components';
 
 // Simple component that renders a gallery of images.
 export default function Gallery() {
@@ -30,18 +32,29 @@ export default function Gallery() {
   return (
     <>
       <GalleryWrapper id="gallery">
-        {images.map((src, index) => (
-          <GalleryItem key={index} onClick={() => handleClick(index)}>
-            <h3>Foto {index + 1}</h3>
-            {!loaded[index] && <ImageSkeleton />}
-            <GalleryImage
-              src={src}
-              alt={`Gallery pic ${index + 1}`}
-              loaded={loaded[index]}
-              onLoad={() => handleImgLoad(index)}
-            />
-          </GalleryItem>
-        ))}
+        {images.map((src, index) => {
+          // Ukázkové tagy, v reálné aplikaci by byly dynamické
+          const tags = index % 2 === 0 ? ['příroda', 'město'] : ['portrét', 'umění'];
+          return (
+            <GalleryItem key={index}>
+              <h2>Foto {index + 1}</h2>
+              {!loaded[index] && <ImageSkeleton />}
+              <div onClick={() => handleClick(index)} style={{ cursor: 'pointer' }}>
+                <GalleryImage
+                  src={src}
+                  alt={`Gallery pic ${index + 1}`}
+                  loaded={loaded[index]}
+                  onLoad={() => handleImgLoad(index)}
+                />
+              </div>
+              <TagsWrapper>
+                {tags.map((tag) => (
+                  <GalleryTag key={tag} tag={tag} />
+                ))}
+              </TagsWrapper>
+            </GalleryItem>
+          );
+        })}
       </GalleryWrapper>
       {modalOpen && (
         <ModalCarousel

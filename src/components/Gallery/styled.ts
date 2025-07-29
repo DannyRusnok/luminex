@@ -19,3 +19,14 @@ export const GalleryItem = styled.div`
   max-width: 800px;
   margin: 0 auto;
 `;
+
+export const TagsWrapper = styled.div`
+  margin-top: 10px;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: left;
+`;

@@ -15,7 +15,7 @@ export const ModalOverlay = styled.div`
 
 export const ModalBox = styled.div`
   position: relative;
-  background: #fff;
+  background: #f3e5f5;
   padding: 0;
   width: 100vw;
   height: 100vh;
