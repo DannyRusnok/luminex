@@ -6,11 +6,16 @@ export const ContactSection = styled.section`
   border: 1px solid #9c27b0;
   border-radius: 4px;
   background-color: #f3e5f5;
+
+  @media (min-width: 600px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
 export const ContactTitle = styled.h2`
   margin-bottom: 20px;
-  text-align: center;
 `;
 
 export const FormGroup = styled.div`
@@ -66,20 +71,25 @@ export const SubmitButton = styled.button`
   }
 `;
 
-export const SocialRow = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  gap: 20px;
-`;
-
-export const SocialIcon = styled.img`
-  width: 32px;
-  height: 32px;
-`;
-
 export const ContactEmail = styled.div`
   text-align: center;
   margin-top: 10px;
   font-weight: bold;
+`;
+
+export const ContactForm = styled.div`
+    @media (min-width: 600px) {
+        width: 100%
+    }
+`;
+
+export const SocialRowWrapper = styled.div`
+  
+  @media (min-width: 600px) {
+        display: flex;
+  width: 100%;
+  height: 16.375rem;
+  justify-content: center;
+  align-items: center;
+    }
 `;

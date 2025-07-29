@@ -1,19 +1,18 @@
 import React from 'react';
 import Gallery from './components/Gallery/Gallery';
 import Navbar from './components/Navbar/Navbar';
-import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
-import { Hero } from './components/Hero';
+import { Layout } from './styled';
+import Contact from './components/Contact';
 
 function App() {
   return (
-    <div className="App">
+    <Layout>
       <Navbar />
-      <Hero />
       <Gallery />
       <Contact />
       <Footer />
-    </div>
+    </Layout>
   );
 }
 

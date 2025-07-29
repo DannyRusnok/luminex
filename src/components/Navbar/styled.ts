@@ -1,10 +1,24 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
-export const NavbarWrapper = styled.nav`
+const NavbarWrapperMenuOpenCss = css`    
+    height: 82px;  
+    align-items: center;
+    opacity: 1;
+`;
+
+export const NavbarWrapper = styled.nav<{ $menuOpen: boolean }>`
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 10px 20px;
   background-color: #9c27b0;
   color: #fff;
   position: fixed;
@@ -13,62 +27,75 @@ export const NavbarWrapper = styled.nav`
   width: 100%;
   z-index: 1000;
   box-sizing: border-box;
+  opacity: 0.9;
+${(props) => (!props.$menuOpen ? NavbarWrapperMenuOpenCss : '')}
+
 `;
 
 export const Burger = styled.button`
-  display: none;
+  display: flex;
   flex-direction: column;
-  background: none;
   border: none;
   padding: 0;
   cursor: pointer;
-  @media (max-width: 600px) {
-    display: flex;
-  }
+  background-color: white;
+  height: 5.125rem;
+  min-width: 5.125rem;
+  justify-content: center;
+  align-items: center;
+  color: #9c27b0;
 `;
 
 const NavbarOpenCss = css`
-  display: 'flex';
-  flexDirection: 'column';
-  alignItems: 'flex-start';
+  display: flex;
+  align-items: flex-start;
 `;
 
-export const NavbarMenu = styled.div<{ menuOpen: boolean }>`
-  ${(props) => (props.menuOpen ? NavbarOpenCss : '')}
-  display: flex;
+export const NavbarMenu = styled.div<{ $menuOpen: boolean }>`
+    display: none;
+${(props) => (props.$menuOpen ? NavbarOpenCss : '')}
   flex-grow: 1;
   justify-content: space-between;
   align-items: center;
-  @media (max-width: 600px) {
-    display: none;
     flex-direction: column;
     width: 100%;
     margin-top: 10px;
     height: auto;
-  }
 `;
 
-export const NavbarLeft = styled.div`
+export const NavbarContent = styled.div`
   display: flex;
   align-items: center;
-  @media (max-width: 600px) {
     flex-direction: column;
+    gap: 2rem;
     width: 100%;
     justify-content: center;
     margin: 5px 0;
-  }
+    height: 100vh;
 `;
 
 export const NavbarLink = styled.a`
   text-decoration: none;
   color: inherit;
-  text-align: right;
-  font-size: 1.2rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  opacity: 0;
+  animation: ${fadeIn} 0.7s ease forwards;
+`;
 
-  @media (max-width: 600px) {
-    flex-direction: column;
-    width: 100%;
+export const CloseIconWrapper = styled.div`
+  color: white;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 5.125rem;
+  min-width: 5.125rem;
+  display: flex;
     justify-content: center;
-    border-bottom: 2px solid white;
-  }
+    align-items: center;
 `;

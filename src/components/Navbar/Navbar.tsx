@@ -3,11 +3,13 @@ import {
   NavbarWrapper,
   Burger,
   NavbarMenu,
-  NavbarLeft,
-  NavbarLink
+  NavbarContent,
+  NavbarLink,
+  CloseIconWrapper
 } from './styled';
-import { CloseIcon } from '../CloseIcon';
 import { HamburgerIcon } from '../HamburgerIcon';
+import { Title } from '../Title';
+import { CloseIcon } from '../CloseIcon';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -25,20 +27,24 @@ export default function Navbar() {
   }, []);
 
   return (
-    <NavbarWrapper>
-      <Burger onClick={toggleMenu} aria-label="toggle menu">
-        {menuOpen ? <CloseIcon /> : <HamburgerIcon />}
-      </Burger>
-      <NavbarMenu menuOpen={menuOpen}>
-        <NavbarLeft>
+    <NavbarWrapper $menuOpen={menuOpen}>
+      <NavbarMenu $menuOpen={menuOpen}>
+        <CloseIconWrapper onClick={toggleMenu} ><CloseIcon  /></CloseIconWrapper>
+        <NavbarContent>
           <NavbarLink href="#gallery" onClick={() => setMenuOpen(false)}>
-            Portfolio
+            PORTFOLIO
           </NavbarLink>
           <NavbarLink href="#kontakt" onClick={() => setMenuOpen(false)}>
-            Kontakt
+            KONTAKT
           </NavbarLink>
-        </NavbarLeft>
+        </NavbarContent>
       </NavbarMenu>
+      {!menuOpen && <Title /> }
+      {!menuOpen && (
+        <Burger onClick={toggleMenu} aria-label="toggle menu">
+          <HamburgerIcon />
+        </Burger>
+      )}
     </NavbarWrapper>
   );
 }

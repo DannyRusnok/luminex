@@ -1,9 +1,13 @@
 import React from 'react';
 
-export const HamburgerIcon: React.FC = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <line x1="4" y1="7" x2="20" y2="7" stroke="currentColor" strokeWidth="2"/>
-    <line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" strokeWidth="2"/>
-    <line x1="4" y1="17" x2="20" y2="17" stroke="currentColor" strokeWidth="2"/>
+export type HamburgerIconProps = {
+  color?: string;
+};
+
+export const HamburgerIcon: React.FC<HamburgerIconProps> = ({ color = 'currentColor' }) => (
+  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+    <line x1="8" y1="14" x2="40" y2="14" stroke={color} strokeWidth="4"/>
+    <line x1="8" y1="24" x2="40" y2="24" stroke={color} strokeWidth="4"/>
+    <line x1="8" y1="34" x2="40" y2="34" stroke={color} strokeWidth="4"/>
   </svg>
 );
