@@ -3,7 +3,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  background-color: #f8f8f8;
+  background-color: #2196f3;
+  color: #fff;
 }
 
 .navbar-menu {
@@ -50,13 +51,17 @@
 .burger .line {
   width: 25px;
   height: 3px;
-  background-color: #333;
+  background-color: #fff;
   margin: 4px 0;
 }
 
 @media (max-width: 600px) {
   .burger {
     display: flex;
+  }
+
+  .navbar-center {
+    display: none;
   }
 
   .navbar-menu {

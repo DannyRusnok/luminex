@@ -2,8 +2,9 @@
   margin: 40px auto;
   max-width: 500px;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #2196f3;
   border-radius: 4px;
+  background-color: #e3f2fd;
 }
 
 .contact h2 {
@@ -26,7 +27,7 @@
   width: 100%;
   box-sizing: border-box;
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #2196f3;
   border-radius: 4px;
 }
 
@@ -41,7 +42,7 @@
 button[type="submit"] {
   padding: 10px 15px;
   border: none;
-  background-color: #333;
+  background-color: #2196f3;
   color: #fff;
   cursor: pointer;
   border-radius: 4px;

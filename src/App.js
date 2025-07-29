@@ -8,6 +8,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
+      <h1 className="mobile-title">Daniel Rusnok Portfolio</h1>
       <Gallery />
       <Contact />
       <Footer />
