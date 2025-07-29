@@ -1,10 +1,10 @@
 import React from 'react';
-import './Footer.css';
+import { FooterWrapper } from './styled';
 
 export default function Footer() {
   return (
-    <footer className="footer">
+    <FooterWrapper>
       <p>powered by Hephara</p>
-    </footer>
+    </FooterWrapper>
   );
 }

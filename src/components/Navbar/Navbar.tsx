@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import './Navbar.css';
+import {
+  NavbarWrapper,
+  Burger,
+  Line,
+  NavbarMenu,
+  NavbarLeft,
+  NavbarLink
+} from './styled';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -17,27 +24,22 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="navbar">
-      <div className="navbar-center">Daniel Rusnok Portfolio</div>
-      <button
-        className={`burger ${menuOpen ? 'open' : ''}`}
-        onClick={toggleMenu}
-        aria-label="toggle menu"
-      >
-        <span className="line" />
-        <span className="line" />
-        <span className="line" />
-      </button>
-      <div className={`navbar-menu ${menuOpen ? 'open' : ''}`}>
-        <div className="navbar-left">
-          <a href="#gallery" onClick={() => setMenuOpen(false)}>
+    <NavbarWrapper>
+      <Burger onClick={toggleMenu} aria-label="toggle menu">
+        <Line />
+        <Line />
+        <Line />
+      </Burger>
+      <NavbarMenu style={menuOpen ? { display: 'flex', flexDirection: 'column', alignItems: 'flex-start' } : {}}>
+        <NavbarLeft>
+          <NavbarLink href="#gallery" onClick={() => setMenuOpen(false)}>
             Portfolio
-          </a>
-          <a href="#kontakt" onClick={() => setMenuOpen(false)}>
+          </NavbarLink>
+          <NavbarLink href="#kontakt" onClick={() => setMenuOpen(false)}>
             Kontakt
-          </a>
-        </div>
-      </div>
-    </nav>
+          </NavbarLink>
+        </NavbarLeft>
+      </NavbarMenu>
+    </NavbarWrapper>
   );
 }

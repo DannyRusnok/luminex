@@ -1,5 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import './Gallery.css';
+import {
+  GalleryWrapper,
+  GalleryItem,
+  FlipCard,
+  CardFront,
+  CardBack
+} from './styled';
 import ModalCarousel from '../ModalCarousel/ModalCarousel';
 
 // Simple component that renders a gallery of images.
@@ -54,26 +60,22 @@ export default function Gallery() {
 
   return (
     <>
-      <div id="gallery" className="gallery">
+      <GalleryWrapper id="gallery">
         {images.map((src, index) => {
           const flipped = flippedStates[index];
           return (
-            <div
-              className="gallery-item"
-              key={index}
-              onClick={(e) => handleClick(index, e)}
-            >
+            <GalleryItem key={index} onClick={(e) => handleClick(index, e)}>
               <h3>Foto {index + 1}</h3>
-              <div className={`flip-card ${flipped ? 'flipped' : ''}`}>
-                <img className="front" src={src} alt={`Gallery pic ${index + 1}`} />
-                <div className="back">
+              <FlipCard flipped={flipped}>
+                <CardFront src={src} alt={`Gallery pic ${index + 1}`} />
+                <CardBack>
                   <p>Popis obrázku {index + 1}</p>
-                </div>
-              </div>
-            </div>
+                </CardBack>
+              </FlipCard>
+            </GalleryItem>
           );
         })}
-      </div>
+      </GalleryWrapper>
       {modalOpen && (
         <ModalCarousel
           images={images}

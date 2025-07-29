@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './ModalCarousel.css';
+import {
+  ModalOverlay,
+  ModalBox,
+  ModalImage,
+  CloseButton,
+  Carousel,
+  NavButton,
+  Caption
+} from './styled';
 
 interface Props {
   images: string[];
@@ -39,23 +47,16 @@ export default function ModalCarousel({ images, startIndex, onClose }: Props) {
   };
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div
-        className="modal"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button className="close" onClick={onClose} aria-label="close">&times;</button>
-        <div
-          className="carousel"
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-        >
-          <button className="nav prev" onClick={prev} aria-label="previous">&lt;</button>
-          <img src={images[current]} alt={`Gallery pic ${current + 1}`} />
-          <button className="nav next" onClick={next} aria-label="next">&gt;</button>
-        </div>
-        <p className="caption">Popis obrázku {current + 1}</p>
-      </div>
-    </div>
+    <ModalOverlay onClick={onClose}>
+      <ModalBox onClick={(e) => e.stopPropagation()}>
+        <CloseButton onClick={onClose} aria-label="close">&times;</CloseButton>
+        <Carousel onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+          <NavButton onClick={prev} aria-label="previous">&lt;</NavButton>
+          <ModalImage src={images[current]} alt={`Gallery pic ${current + 1}`} />
+          <NavButton onClick={next} aria-label="next">&gt;</NavButton>
+        </Carousel>
+        <Caption>Popis obrázku {current + 1}</Caption>
+      </ModalBox>
+    </ModalOverlay>
   );
 }
