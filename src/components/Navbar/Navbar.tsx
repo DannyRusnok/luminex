@@ -37,7 +37,7 @@ export default function Navbar() {
             PORTFOLIO
           </NavbarLink>
           <NavbarLink href="#kontakt" onClick={() => setMenuOpen(false)}>
-            KONTAKT
+            CONTACT
           </NavbarLink>
         </NavbarContent>
       </NavbarMenu>

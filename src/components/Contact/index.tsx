@@ -16,7 +16,7 @@ export default function Contact() {
   return (
     <ContactSection id="kontakt">
       <ContactForm>
-        <ContactTitle>Contact</ContactTitle>
+        <ContactTitle>CONTACT</ContactTitle>
         <form action="mailto:Daniel.rusnok@gmail.com" method="post" encType="text/plain">
           <FormGroup>
             <Input type="text" id="name" name="name" required placeholder="Name" />
@@ -27,7 +27,7 @@ export default function Contact() {
           <FormGroup>
             <Textarea id="message" name="message" required placeholder="Message" />
           </FormGroup>
-          <SubmitButton type="submit">Odeslat</SubmitButton>
+          <SubmitButton type="submit">SEND</SubmitButton>
         </form>
       </ContactForm>
       <SocialRowWrapper>

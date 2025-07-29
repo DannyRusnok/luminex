@@ -5,13 +5,14 @@ export const SocialRowContainer = styled.div`
   justify-content: center;
   margin-top: 20px;
   gap: 20px;
-
-  @media (min-width: 600px) {
-    display: flex;
-  }
 `;
 
 export const SocialIcon = styled.img`
-  width: 32px;
-  height: 32px;
+  width: 2rem;
+  height: 2rem;
+
+  @media (min-width: 600px) {
+    width: 3rem;
+    height: 3rem;
+  }
 `;
