@@ -6,7 +6,7 @@ import {
   CloseButton,
   Carousel,
   NavButton,
-  Caption
+  Caption,
 } from './styled';
 
 interface Props {
@@ -49,11 +49,17 @@ export default function ModalCarousel({ images, startIndex, onClose }: Props) {
   return (
     <ModalOverlay onClick={onClose}>
       <ModalBox onClick={(e) => e.stopPropagation()}>
-        <CloseButton onClick={onClose} aria-label="close">&times;</CloseButton>
+        <CloseButton onClick={onClose} aria-label="close">
+          &times;
+        </CloseButton>
         <Carousel onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
-          <NavButton onClick={prev} aria-label="previous">&lt;</NavButton>
+          <NavButton onClick={prev} aria-label="previous">
+            &lt;
+          </NavButton>
           <ModalImage src={images[current]} alt={`Gallery pic ${current + 1}`} />
-          <NavButton onClick={next} aria-label="next">&gt;</NavButton>
+          <NavButton onClick={next} aria-label="next">
+            &gt;
+          </NavButton>
         </Carousel>
         <Caption>Popis obrázku {current + 1}</Caption>
       </ModalBox>

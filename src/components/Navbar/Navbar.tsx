@@ -5,7 +5,7 @@ import {
   NavbarMenu,
   NavbarContent,
   NavbarLink,
-  CloseIconWrapper
+  CloseIconWrapper,
 } from './styled';
 import { HamburgerIcon } from '../HamburgerIcon';
 import { Title } from '../Title';
@@ -29,7 +29,9 @@ export default function Navbar() {
   return (
     <NavbarWrapper $menuOpen={menuOpen}>
       <NavbarMenu $menuOpen={menuOpen}>
-        <CloseIconWrapper onClick={toggleMenu} ><CloseIcon  /></CloseIconWrapper>
+        <CloseIconWrapper onClick={toggleMenu}>
+          <CloseIcon />
+        </CloseIconWrapper>
         <NavbarContent>
           <NavbarLink href="#gallery" onClick={() => setMenuOpen(false)}>
             PORTFOLIO
@@ -39,7 +41,7 @@ export default function Navbar() {
           </NavbarLink>
         </NavbarContent>
       </NavbarMenu>
-      {!menuOpen && <Title /> }
+      {!menuOpen && <Title />}
       {!menuOpen && (
         <Burger onClick={toggleMenu} aria-label="toggle menu">
           <HamburgerIcon />

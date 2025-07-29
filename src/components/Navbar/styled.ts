@@ -10,10 +10,10 @@ const fadeIn = keyframes`
   }
 `;
 
-const NavbarWrapperMenuOpenCss = css`    
-    height: 82px;  
-    align-items: center;
-    opacity: 1;
+const NavbarWrapperMenuOpenCss = css`
+  height: 82px;
+  align-items: center;
+  opacity: 1;
 `;
 
 export const NavbarWrapper = styled.nav<{ $menuOpen: boolean }>`
@@ -28,8 +28,7 @@ export const NavbarWrapper = styled.nav<{ $menuOpen: boolean }>`
   z-index: 1000;
   box-sizing: border-box;
   opacity: 0.9;
-${(props) => (!props.$menuOpen ? NavbarWrapperMenuOpenCss : '')}
-
+  ${(props) => (!props.$menuOpen ? NavbarWrapperMenuOpenCss : '')}
 `;
 
 export const Burger = styled.button`
@@ -52,26 +51,26 @@ const NavbarOpenCss = css`
 `;
 
 export const NavbarMenu = styled.div<{ $menuOpen: boolean }>`
-    display: none;
-${(props) => (props.$menuOpen ? NavbarOpenCss : '')}
+  display: none;
+  ${(props) => (props.$menuOpen ? NavbarOpenCss : '')}
   flex-grow: 1;
   justify-content: space-between;
   align-items: center;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 10px;
-    height: auto;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 10px;
+  height: auto;
 `;
 
 export const NavbarContent = styled.div`
   display: flex;
   align-items: center;
-    flex-direction: column;
-    gap: 2rem;
-    width: 100%;
-    justify-content: center;
-    margin: 5px 0;
-    height: 100vh;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  justify-content: center;
+  margin: 5px 0;
+  height: 100vh;
 `;
 
 export const NavbarLink = styled.a`
@@ -96,6 +95,6 @@ export const CloseIconWrapper = styled.div`
   height: 5.125rem;
   min-width: 5.125rem;
   display: flex;
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 `;

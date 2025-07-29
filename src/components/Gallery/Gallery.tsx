@@ -1,11 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import {
-  GalleryWrapper,
-  GalleryItem,
-  FlipCard,
-  CardFront,
-  CardBack
-} from './styled';
+import { GalleryWrapper, GalleryItem, FlipCard, CardFront, CardBack } from './styled';
 import ModalCarousel from '../ModalCarousel/ModalCarousel';
 
 // Simple component that renders a gallery of images.
@@ -14,17 +8,13 @@ export default function Gallery() {
     'https://picsum.photos/id/1015/300/200',
     'https://picsum.photos/id/1016/300/200',
     'https://picsum.photos/id/1025/300/200',
-    'https://picsum.photos/id/1035/300/200'
+    'https://picsum.photos/id/1035/300/200',
   ];
 
-  const [flippedStates, setFlippedStates] = useState<boolean[]>(
-    images.map(() => false)
-  );
+  const [flippedStates, setFlippedStates] = useState<boolean[]>(images.map(() => false));
   const [modalIndex, setModalIndex] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
-  const flipTimeouts = useRef<(ReturnType<typeof setTimeout> | null)[]>(
-    images.map(() => null)
-  );
+  const flipTimeouts = useRef<(ReturnType<typeof setTimeout> | null)[]>(images.map(() => null));
 
   useEffect(() => {
     return () => {
@@ -34,10 +24,7 @@ export default function Gallery() {
 
   const FLIP_DELAY = 250;
 
-  const handleClick = (
-    index: number,
-    e: React.MouseEvent<HTMLDivElement>
-  ) => {
+  const handleClick = (index: number, e: React.MouseEvent<HTMLDivElement>) => {
     if (e.detail === 2) {
       if (flipTimeouts.current[index]) {
         clearTimeout(flipTimeouts.current[index]);
@@ -50,9 +37,7 @@ export default function Gallery() {
         clearTimeout(flipTimeouts.current[index]);
       }
       flipTimeouts.current[index] = setTimeout(() => {
-        setFlippedStates((prev) =>
-          prev.map((f, i) => (i === index ? !f : f))
-        );
+        setFlippedStates((prev) => prev.map((f, i) => (i === index ? !f : f)));
         flipTimeouts.current[index] = null;
       }, FLIP_DELAY);
     }

@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components';
 
 export const SocialRowContainer = styled.div`
   display: flex;
@@ -8,7 +8,6 @@ export const SocialRowContainer = styled.div`
 
   @media (min-width: 600px) {
     display: flex;
-    
   }
 `;
 

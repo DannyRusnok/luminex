@@ -24,7 +24,7 @@ export const FormGroup = styled.div`
   flex-direction: column;
   text-align: left;
   max-width: 500px;
-  
+
   @media (max-width: 600px) {
     text-align: center;
     max-width: unset;
@@ -78,18 +78,17 @@ export const ContactEmail = styled.div`
 `;
 
 export const ContactForm = styled.div`
-    @media (min-width: 600px) {
-        width: 100%
-    }
+  @media (min-width: 600px) {
+    width: 100%;
+  }
 `;
 
 export const SocialRowWrapper = styled.div`
-  
   @media (min-width: 600px) {
-        display: flex;
-  width: 100%;
-  height: 16.375rem;
-  justify-content: center;
-  align-items: center;
-    }
+    display: flex;
+    width: 100%;
+    height: 16.375rem;
+    justify-content: center;
+    align-items: center;
+  }
 `;
