@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { GalleryWrapper, GalleryItem, FlipCard, CardFront, CardBack } from './styled';
+import { GalleryWrapper, GalleryItem } from './styled';
 import ImageSkeleton from './ImageSkeleton';
 import ModalCarousel from '../ModalCarousel/ModalCarousel';
+import GalleryImage from '../GalleryImage/GalleryImage';
 
 // Simple component that renders a gallery of images.
 export default function Gallery() {
@@ -12,36 +13,12 @@ export default function Gallery() {
     'https://picsum.photos/id/1035/300/200',
   ];
 
-  const [flippedStates, setFlippedStates] = useState<boolean[]>(images.map(() => false));
   const [modalIndex, setModalIndex] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
-  const flipTimeouts = useRef<(ReturnType<typeof setTimeout> | null)[]>(images.map(() => null));
 
-  useEffect(() => {
-    return () => {
-      flipTimeouts.current.forEach((t) => t && clearTimeout(t));
-    };
-  }, []);
-
-  const FLIP_DELAY = 250;
-
-  const handleClick = (index: number, e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.detail === 2) {
-      if (flipTimeouts.current[index]) {
-        clearTimeout(flipTimeouts.current[index]);
-        flipTimeouts.current[index] = null;
-      }
-      setModalIndex(index);
-      setModalOpen(true);
-    } else {
-      if (flipTimeouts.current[index]) {
-        clearTimeout(flipTimeouts.current[index]);
-      }
-      flipTimeouts.current[index] = setTimeout(() => {
-        setFlippedStates((prev) => prev.map((f, i) => (i === index ? !f : f)));
-        flipTimeouts.current[index] = null;
-      }, FLIP_DELAY);
-    }
+  const handleClick = (index: number) => {
+    setModalIndex(index);
+    setModalOpen(true);
   };
 
   const [loaded, setLoaded] = useState<boolean[]>(images.map(() => false));
@@ -53,37 +30,18 @@ export default function Gallery() {
   return (
     <>
       <GalleryWrapper id="gallery">
-        {images.map((src, index) => {
-          const flipped = flippedStates[index];
-          return (
-            <GalleryItem key={index} onClick={(e) => handleClick(index, e)}>
-              <h3>Foto {index + 1}</h3>
-              <FlipCard $flipped={flipped}>
-                {!loaded[index] && <ImageSkeleton />}
-                <CardFront
-                  src={src}
-                  alt={`Gallery pic ${index + 1}`}
-                  style={
-                    !loaded[index]
-                      ? {
-                          opacity: 0,
-                          position: 'absolute',
-                          pointerEvents: 'none',
-                          width: 1,
-                          height: 1,
-                        }
-                      : { opacity: 1, position: 'static' }
-                  }
-                  loading="lazy"
-                  onLoad={() => handleImgLoad(index)}
-                />
-                <CardBack>
-                  <p>Popis obrázku {index + 1}</p>
-                </CardBack>
-              </FlipCard>
-            </GalleryItem>
-          );
-        })}
+        {images.map((src, index) => (
+          <GalleryItem key={index} onClick={() => handleClick(index)}>
+            <h3>Foto {index + 1}</h3>
+            {!loaded[index] && <ImageSkeleton />}
+            <GalleryImage
+              src={src}
+              alt={`Gallery pic ${index + 1}`}
+              loaded={loaded[index]}
+              onLoad={() => handleImgLoad(index)}
+            />
+          </GalleryItem>
+        ))}
       </GalleryWrapper>
       {modalOpen && (
         <ModalCarousel
