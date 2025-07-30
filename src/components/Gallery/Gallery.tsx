@@ -60,7 +60,11 @@ export default function Gallery() {
             </div>
             <TagsWrapper>
               {Array.isArray(img.tags) &&
-                img.tags.map((tag: string) => <GalleryTag key={tag} tag={tag} />)}
+                img.tags
+                  .filter((tag: string) => tag && tag.trim() !== '')
+                  .map((tag: string) => (
+                    <GalleryTag key={tag} tag={tag} />
+                  ))}
             </TagsWrapper>
           </GalleryItem>
         ))}
