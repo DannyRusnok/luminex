@@ -7,7 +7,9 @@ export const PortfolioWrapper = styled.div`
 `;
 
 export const PortfolioTitle = styled.h2`
+  padding-left: 24px;
   @media (max-width: 900px) {
     text-align: center;
+    padding-left: 0;
   }
 `;
