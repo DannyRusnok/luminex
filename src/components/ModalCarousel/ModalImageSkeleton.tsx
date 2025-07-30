@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import { luminexTheme } from '../../theme';
 
 const shimmer = keyframes`
   0% {
@@ -21,7 +22,7 @@ const Skeleton = styled.div`
   background-size: 800px 100%;
   animation: ${shimmer} 1.2s infinite linear;
 
-  @media (min-width: 900px) {
+  @media (min-width: ${luminexTheme.breakpoints.tablet}) {
     width: 800px;
     max-width: 800px;
   }

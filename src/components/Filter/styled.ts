@@ -12,10 +12,10 @@ export const FilterWrapper = styled.section`
   background-color: #f3e5f5;
   padding: 28px 24px 28px 24px;
 
-  @media (min-width: 500px) {
+  @media (min-width: ${luminexTheme.breakpoints.mobile}) {
     grid-template-columns: 1fr 1fr;
   }
-  @media (min-width: 900px) {
+  @media (min-width: ${luminexTheme.breakpoints.tablet}) {
     grid-template-columns: repeat(4, 1fr);
   }
 `;

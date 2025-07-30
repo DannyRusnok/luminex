@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { luminexTheme } from '../../theme';
 
 export const PortfolioHeading = styled.h2`
-  max-width: 1200px;
+  max-width: ${luminexTheme.breakpoints.desktop};
   margin: 0 auto 24px auto;
   padding-left: 0;
   text-align: left;
@@ -18,7 +19,7 @@ export const GalleryWrapper = styled.div`
   width: 100%;
   margin: 20px auto 0 auto;
 
-  @media (min-width: 900px) {
+  @media (min-width: ${luminexTheme.breakpoints.tablet}) {
     grid-template-columns: 1fr 1fr;
     gap: 40px 32px;
   }
@@ -33,7 +34,7 @@ export const GalleryItem = styled.div`
   margin: 0 auto;
   box-sizing: border-box;
 
-  @media (min-width: 900px) {
+  @media (min-width: ${luminexTheme.breakpoints.tablet}) {
     max-width: 100%;
     margin: 0;
   }

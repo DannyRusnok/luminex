@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { luminexTheme } from '../../theme';
 
 export const ModalOverlay = styled.div`
   position: fixed;
@@ -30,12 +31,12 @@ export const ModalBox = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media (min-width: 900px) {
-    width: 900px;
-    min-width: 900px;
+  @media (min-width: ${luminexTheme.breakpoints.tablet}) {
+    width: ${luminexTheme.breakpoints.tablet};
+    min-width: ${luminexTheme.breakpoints.tablet};
     height: auto;
     min-height: 90vh;
-    max-width: 900px;
+    max-width: ${luminexTheme.breakpoints.tablet};
     max-height: 90vh;
     border-radius: 16px;
     padding: 32px 0 32px 0;
