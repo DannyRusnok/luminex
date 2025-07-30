@@ -16,12 +16,14 @@ export const HeroWrapper = styled.div`
   height: 500px;
   overflow: hidden;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: flex-end;
   box-shadow: 0 4px 32px rgba(60, 0, 60, 0.1);
 
   @media (min-width: 900px) {
     height: 656px;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -70,4 +72,5 @@ export const HeroSubtitle = styled.p`
   font-weight: 400;
   margin: 0;
   text-shadow: 0 2px 8px rgba(60, 0, 60, 0.12);
+  font-family: 'Pacifico', cursive;
 `;
