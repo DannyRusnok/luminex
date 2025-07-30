@@ -27,7 +27,7 @@ export default function Contact() {
           <FormGroup>
             <Textarea id="message" name="message" required placeholder="Message" />
           </FormGroup>
-          <SubmitButton type="submit">SEND</SubmitButton>
+          <SubmitButton type="submit">ODESLAT</SubmitButton>
         </form>
       </ContactForm>
       <SocialRowWrapper>

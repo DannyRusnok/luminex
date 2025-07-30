@@ -33,11 +33,14 @@ export default function Navbar() {
           <CloseIcon />
         </CloseIconWrapper>
         <NavbarContent>
+          <NavbarLink href="#exhibitions" onClick={() => setMenuOpen(false)}>
+            VÝSTAVY
+          </NavbarLink>
           <NavbarLink href="#gallery" onClick={() => setMenuOpen(false)}>
             PORTFOLIO
           </NavbarLink>
           <NavbarLink href="#kontakt" onClick={() => setMenuOpen(false)}>
-            CONTACT
+            KONTAKT
           </NavbarLink>
         </NavbarContent>
       </NavbarMenu>
