@@ -23,6 +23,7 @@ export default function Filter({ selectedTags, onChange }: FilterProps) {
         }
       });
       const uniqueTags = Array.from(new Set(allTags));
+      uniqueTags.sort((a, b) => a.localeCompare(b));
       setTags(uniqueTags);
     }
     fetchTags();
@@ -47,7 +48,7 @@ export default function Filter({ selectedTags, onChange }: FilterProps) {
             checked={selectedTags.includes(tag)}
             onChange={() => handleCheckboxChange(tag)}
           />
-          <span>#{tag}</span>
+          <span>{tag}</span>
         </CheckboxLabel>
       ))}
     </FilterWrapper>
