@@ -7,6 +7,7 @@ export const ExhibitionsSection = styled.section`
   margin: 40px auto 0 auto;
   padding: 0 24px;
   box-sizing: border-box;
+  max-width: 1200px;
 `;
 
 export const ExhibitionsTitle = styled.h2`
@@ -22,6 +23,7 @@ export const ExhibitionsGrid = styled.div`
   grid-template-columns: 1fr;
   gap: 32px;
   margin-top: 24px;
+  max-width: 1200px;
 
   @media (min-width: ${luminexTheme.breakpoints.tablet}) {
     grid-template-columns: 1fr 1fr;
@@ -30,10 +32,12 @@ export const ExhibitionsGrid = styled.div`
 
 export const ExhibitionCard = styled.div`
   text-align: center;
+  border: 1px solid ${luminexTheme.colors.primary};
+  padding: 10px;
 `;
 
 export const ExhibitionImage = styled.img`
-  width: 100%;
+  width: 65%;
   height: auto;
   margin-top: 8px;
 `;
@@ -47,6 +51,7 @@ export const ExhibitionDate = styled.p`
 export const ExhibitionDescription = styled.p`
   margin-top: 8px;
   text-align: left;
+  width: 100%;
 `;
 
 export const ExhibitionAddress = styled.p`
