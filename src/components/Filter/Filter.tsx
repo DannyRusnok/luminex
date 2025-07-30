@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { sanityClient } from '../../sanityClient';
 import { FilterWrapper, CheckboxLabel } from './styled';
 
-export default function Filter() {
+interface FilterProps {
+  selectedTags: string[];
+  onChange: (tags: string[]) => void;
+}
+
+export default function Filter({ selectedTags, onChange }: FilterProps) {
   const [tags, setTags] = useState<string[]>([]);
 
   useEffect(() => {
@@ -23,11 +28,25 @@ export default function Filter() {
     fetchTags();
   }, []);
 
+  const handleCheckboxChange = (tag: string) => {
+    if (selectedTags.includes(tag)) {
+      onChange(selectedTags.filter((t) => t !== tag));
+    } else {
+      onChange([...selectedTags, tag]);
+    }
+  };
+
   return (
     <FilterWrapper>
       {tags.map((tag) => (
         <CheckboxLabel key={tag}>
-          <input type="checkbox" id={tag} name={tag} />
+          <input
+            type="checkbox"
+            id={tag}
+            name={tag}
+            checked={selectedTags.includes(tag)}
+            onChange={() => handleCheckboxChange(tag)}
+          />
           <span>#{tag}</span>
         </CheckboxLabel>
       ))}
