@@ -41,7 +41,7 @@ export default function Navbar() {
           </NavbarLink>
         </NavbarContent>
       </NavbarMenu>
-      {!menuOpen && <Title />}
+      {!menuOpen && <div />}
       {!menuOpen && (
         <Burger onClick={toggleMenu} aria-label="toggle menu">
           <HamburgerIcon />

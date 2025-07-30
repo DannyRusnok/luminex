@@ -19,7 +19,7 @@ export default function HeroSection() {
         <HeroOverlay />
         <HeroContent>
           <HeroTitle>Daniel Rusnok Art</HeroTitle>
-          <HeroSubtitle>Maluju a kreslím pro radost</HeroSubtitle>
+          <HeroSubtitle>I draw and paint for joy</HeroSubtitle>
         </HeroContent>
       </HeroWrapper>
     </StyledHeroSection>

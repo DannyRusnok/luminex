@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { GalleryWrapper, GalleryItem, TagsWrapper } from './styled';
+import { GalleryWrapper, GalleryItem, TagsWrapper, PortfolioHeading } from './styled';
 import ImageSkeleton from './ImageSkeleton';
 import ModalCarousel from '../ModalCarousel/ModalCarousel'; // ModalCarousel nyní očekává images: {url, description}[]
 import GalleryImage from '../GalleryImage/GalleryImage';
@@ -57,7 +57,7 @@ export default function Gallery({ selectedTags }: GalleryProps) {
 
   return (
     <>
-      <GalleryWrapper id="gallery">
+      <GalleryWrapper>
         {filteredImages.map((img, index) => (
           <GalleryItem key={img._id}>
             <h2>{img.title || `Foto ${index + 1}`}</h2>

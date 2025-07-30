@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
+export const PortfolioHeading = styled.h2`
+  max-width: 1200px;
+  margin: 0 auto 24px auto;
+  padding-left: 0;
+  text-align: left;
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+`;
+
 export const GalleryWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -7,7 +17,6 @@ export const GalleryWrapper = styled.div`
   max-width: 1200px;
   width: 100%;
   margin: 20px auto 0 auto;
-  scroll-margin-top: 82px;
 
   @media (min-width: 900px) {
     grid-template-columns: 1fr 1fr;

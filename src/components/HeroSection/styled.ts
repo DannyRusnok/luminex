@@ -11,11 +11,9 @@ export const StyledHeroSection = styled.section`
 
 export const HeroWrapper = styled.div`
   position: relative;
-  width: 100%;
-  max-width: 1200px;
-  margin: 52px auto 32px auto;
-  height: 320px;
-  border-radius: 18px;
+  width: 100vw;
+  margin: 0;
+  height: 500px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -23,7 +21,7 @@ export const HeroWrapper = styled.div`
   box-shadow: 0 4px 32px rgba(60, 0, 60, 0.1);
 
   @media (min-width: 900px) {
-    height: 420px;
+    height: 656px;
   }
 `;
 
