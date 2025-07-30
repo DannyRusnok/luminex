@@ -39,20 +39,18 @@ export default function Filter({ selectedTags, onChange }: FilterProps) {
 
   return (
     <FilterWrapper>
-      <TagsWrapper>
-        {tags.map((tag) => (
-          <CheckboxLabel key={tag}>
-            <input
-              type="checkbox"
-              id={tag}
-              name={tag}
-              checked={selectedTags.includes(tag)}
-              onChange={() => handleCheckboxChange(tag)}
-            />
-            <span>{tag}</span>
-          </CheckboxLabel>
-        ))}
-      </TagsWrapper>
+      {tags.map((tag) => (
+        <CheckboxLabel key={tag}>
+          <input
+            type="checkbox"
+            id={tag}
+            name={tag}
+            checked={selectedTags.includes(tag)}
+            onChange={() => handleCheckboxChange(tag)}
+          />
+          <span>{tag}</span>
+        </CheckboxLabel>
+      ))}
     </FilterWrapper>
   );
 }
