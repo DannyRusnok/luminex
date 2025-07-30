@@ -15,3 +15,18 @@ export const CheckboxLabel = styled.label`
   font-weight: 600;
   font-size: 18px;
 `;
+
+export const DropdownWrapper = styled.div`
+  text-align: center;
+  margin: 20px auto;
+`;
+
+export const ToggleButton = styled.button`
+  padding: 10px 15px;
+  border: none;
+  background-color: #9c27b0;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+`;
