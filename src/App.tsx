@@ -4,7 +4,7 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import { Layout, GlobalStyle } from './styled';
 import Contact from './components/Contact';
-import Filter from './components/Filter/Filter';
+import FilterDropdown from './components/Filter/Dropdown';
 
 function App() {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -14,7 +14,7 @@ function App() {
       <GlobalStyle />
       <Layout>
         <Navbar />
-        <Filter selectedTags={selectedTags} onChange={setSelectedTags} />
+        <FilterDropdown selectedTags={selectedTags} onChange={setSelectedTags} />
         <Gallery selectedTags={selectedTags} />
         <Contact />
         <Footer />
