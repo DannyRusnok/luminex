@@ -4,6 +4,7 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import { Layout, GlobalStyle } from './styled';
 import Contact from './components/Contact';
+import Filter from './components/Filter/Filter';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <GlobalStyle />
       <Layout>
         <Navbar />
+        <Filter />
         <Gallery />
         <Contact />
         <Footer />
