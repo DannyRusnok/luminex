@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer';
 import { Layout, GlobalStyle } from './styled';
 import Contact from './components/Contact';
 import Filter from './components/Filter/Filter';
+import ScrollToTopButton from './components/ScrollToTopButton';
 
 function App() {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -19,6 +20,7 @@ function App() {
         <Contact />
         <Footer />
       </Layout>
+      <ScrollToTopButton />
     </>
   );
 }
