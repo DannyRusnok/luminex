@@ -7,6 +7,7 @@ import { ThemeProvider } from 'styled-components';
 import Contact from './components/Contact';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import { Portfolio } from './components/Portfolio';
+import Exhibitions from './components/Exhibitions';
 import { luminexTheme } from './theme';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Layout>
         <Navbar />
         <HeroSection />
+        <Exhibitions />
         <Portfolio />
         <Contact />
         <Footer />
