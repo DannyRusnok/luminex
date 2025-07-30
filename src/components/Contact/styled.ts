@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import { luminexTheme } from '../../theme';
 
 export const ContactSection = styled.section`
   margin: 40px auto 0;
   padding: 20px;
-  border: 1px solid #9c27b0;
+  border: 1px solid ${luminexTheme.colors.primary};
   border-radius: 4px;
-  background-color: #f3e5f5;
+  background-color: ${luminexTheme.colors.primaryLight};
 
   @media (min-width: 600px) {
     display: flex;

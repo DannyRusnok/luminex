@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { luminexTheme } from '../../theme';
 
 export const StyledHeroSection = styled.section`
   width: 100%;
@@ -44,7 +45,7 @@ export const HeroOverlay = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, rgba(60, 0, 60, 0.45) 0%, rgba(255, 255, 255, 0.1) 100%);
+  background: linear-gradient(90deg, rgba(60, 0, 60, 0.45) 0%, ${luminexTheme.colors.white}1A 100%);
   z-index: 2;
 `;
 

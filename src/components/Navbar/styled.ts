@@ -1,4 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
+import { luminexTheme } from '../../theme';
+
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -19,8 +21,8 @@ const NavbarWrapperMenuOpenCss = css`
 export const NavbarWrapper = styled.nav<{ $menuOpen: boolean }>`
   display: flex;
   justify-content: space-between;
-  background-color: #9c27b0;
-  color: #fff;
+  background-color: ${luminexTheme.colors.primary};
+  color: ${luminexTheme.colors.white};
   position: fixed;
   top: 0;
   left: 0;
@@ -29,7 +31,7 @@ export const NavbarWrapper = styled.nav<{ $menuOpen: boolean }>`
   box-sizing: border-box;
   opacity: 0.9;
   ${(props) => (!props.$menuOpen ? NavbarWrapperMenuOpenCss : '')}
-  border-bottom: 1px solid #9c27b0;
+  border-bottom: 1px solid ${luminexTheme.colors.primary};
 `;
 
 export const Burger = styled.button`

@@ -3,13 +3,15 @@ import Navbar from './components/Navbar/Navbar';
 import HeroSection from './components/HeroSection/HeroSection';
 import Footer from './components/Footer/Footer';
 import { Layout, GlobalStyle } from './styled';
+import { ThemeProvider } from 'styled-components';
 import Contact from './components/Contact';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import { Portfolio } from './components/Portfolio';
+import { luminexTheme } from './theme';
 
 function App() {
   return (
-    <>
+    <ThemeProvider theme={luminexTheme}>
       <GlobalStyle />
       <Layout>
         <Navbar />
@@ -19,7 +21,7 @@ function App() {
         <Footer />
       </Layout>
       <ScrollToTopButton />
-    </>
+    </ThemeProvider>
   );
 }
 

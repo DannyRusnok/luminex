@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import { luminexTheme } from '../../theme';
 
 export const StyledGalleryTag = styled.span`
-  background: #f3e5f5;
-  color: #9c27b0;
+  background: ${luminexTheme.colors.primaryLight};
+  color: ${luminexTheme.colors.primary};
   border-radius: 12px;
   padding: 4px 14px;
   font-size: 18px;

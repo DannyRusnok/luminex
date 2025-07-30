@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { luminexTheme } from '../../theme';
 
 export const StyledGalleryImage = styled.img<{ $loaded: boolean }>`
   width: 100%;
@@ -10,6 +11,7 @@ export const StyledGalleryImage = styled.img<{ $loaded: boolean }>`
   opacity: ${({ $loaded }) => ($loaded ? 1 : 0)};
   position: ${({ $loaded }) => ($loaded ? 'static' : 'absolute')};
   pointer-events: ${({ $loaded }) => ($loaded ? 'auto' : 'none')};
+  background: ${luminexTheme.colors.skeleton};
   ${({ $loaded }) =>
     !$loaded &&
     `
