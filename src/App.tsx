@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Gallery from './components/Gallery/Gallery';
 import Navbar from './components/Navbar/Navbar';
+import HeroSection from './components/HeroSection/HeroSection';
 import Footer from './components/Footer/Footer';
 import { Layout, GlobalStyle } from './styled';
 import Contact from './components/Contact';
@@ -15,6 +16,7 @@ function App() {
       <GlobalStyle />
       <Layout>
         <Navbar />
+        <HeroSection />
         <Filter selectedTags={selectedTags} onChange={setSelectedTags} />
         <Gallery selectedTags={selectedTags} />
         <Contact />

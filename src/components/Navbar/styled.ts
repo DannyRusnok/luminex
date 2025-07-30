@@ -29,6 +29,7 @@ export const NavbarWrapper = styled.nav<{ $menuOpen: boolean }>`
   box-sizing: border-box;
   opacity: 0.9;
   ${(props) => (!props.$menuOpen ? NavbarWrapperMenuOpenCss : '')}
+  border-bottom: 1px solid #9c27b0;
 `;
 
 export const Burger = styled.button`
