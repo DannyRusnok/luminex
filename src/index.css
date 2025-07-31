@@ -4,6 +4,7 @@ body {
   margin: 0;
   font-family: sans-serif;
   background-color: #fafafa;
+  scroll-margin-top: 84px;
   padding-top: 82px;
 }
 
