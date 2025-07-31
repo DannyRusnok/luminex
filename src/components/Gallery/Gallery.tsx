@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { GalleryWrapper, GalleryItem, TagsWrapper, PortfolioHeading } from './styled';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { GalleryWrapper, GalleryItem, TagsWrapper, PortfolioHeading, LikeButton } from './styled';
 import ImageSkeleton from './ImageSkeleton';
 import ModalCarousel from '../ModalCarousel/ModalCarousel'; // ModalCarousel nyní očekává images: {url, description}[]
 import GalleryImage from '../GalleryImage/GalleryImage';
 import GalleryTag from '../GalleryTag/GalleryTag';
+import { HeartIcon } from '../HeartIcon';
 import { sanityClient } from '../../sanityClient';
 
 // Simple component that renders a gallery of images.
@@ -16,6 +17,8 @@ export default function Gallery({ selectedTags }: GalleryProps) {
   const [modalIndex, setModalIndex] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [loaded, setLoaded] = useState<Record<string, boolean>>({});
+  const [liked, setLiked] = useState<Record<string, boolean>>({});
+  const tapTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     async function fetchImages() {
@@ -35,6 +38,13 @@ export default function Gallery({ selectedTags }: GalleryProps) {
         });
         return map;
       });
+      setLiked((prev) => {
+        const map: Record<string, boolean> = {};
+        data.forEach((img: any) => {
+          map[img._id] = prev[img._id] || false;
+        });
+        return map;
+      });
     }
     fetchImages();
   }, []);
@@ -44,8 +54,25 @@ export default function Gallery({ selectedTags }: GalleryProps) {
     setModalOpen(true);
   };
 
+  const handleTap = (index: number, id: string) => {
+    if (tapTimeout.current) {
+      clearTimeout(tapTimeout.current);
+      tapTimeout.current = null;
+      toggleLike(id);
+      return;
+    }
+    tapTimeout.current = setTimeout(() => {
+      handleClick(index);
+      tapTimeout.current = null;
+    }, 300);
+  };
+
   const handleImgLoad = (id: string) => {
     setLoaded((prev) => ({ ...prev, [id]: true }));
+  };
+
+  const toggleLike = (id: string) => {
+    setLiked((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
   const filteredImages = useMemo(() => {
@@ -62,7 +89,7 @@ export default function Gallery({ selectedTags }: GalleryProps) {
           <GalleryItem key={img._id}>
             <h2>{img.title || `Foto ${index + 1}`}</h2>
             {!loaded[img._id] && <ImageSkeleton />}
-            <div onClick={() => handleClick(index)} style={{ cursor: 'pointer' }}>
+            <div onClick={() => handleTap(index, img._id)} style={{ cursor: 'pointer' }}>
               <GalleryImage
                 src={img.url}
                 alt={img.description || `Gallery pic ${index + 1}`}
@@ -70,6 +97,9 @@ export default function Gallery({ selectedTags }: GalleryProps) {
                 onLoad={() => handleImgLoad(img._id)}
               />
             </div>
+            <LikeButton onClick={() => toggleLike(img._id)} aria-label="like">
+              <HeartIcon filled={!!liked[img._id]} color="#e91e63" />
+            </LikeButton>
             <TagsWrapper>
               {Array.isArray(img.tags) &&
                 img.tags
