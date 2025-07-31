@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { sanityClient } from '../../sanityClient';
-import { FilterWrapper, CheckboxLabel } from './styled';
+import { FilterWrapper, DropdownSelect } from './styled';
 
 interface FilterProps {
   selectedTags: string[];
@@ -29,28 +29,25 @@ export default function Filter({ selectedTags, onChange }: FilterProps) {
     fetchTags();
   }, []);
 
-  const handleCheckboxChange = (tag: string) => {
-    if (selectedTags.includes(tag)) {
-      onChange(selectedTags.filter((t) => t !== tag));
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    if (value === '') {
+      onChange([]);
     } else {
-      onChange([...selectedTags, tag]);
+      onChange([value]);
     }
   };
 
   return (
     <FilterWrapper>
-      {tags.map((tag) => (
-        <CheckboxLabel key={tag}>
-          <input
-            type="checkbox"
-            id={tag}
-            name={tag}
-            checked={selectedTags.includes(tag)}
-            onChange={() => handleCheckboxChange(tag)}
-          />
-          <span>{tag}</span>
-        </CheckboxLabel>
-      ))}
+      <DropdownSelect value={selectedTags[0] || ''} onChange={handleSelectChange}>
+        <option value="">All</option>
+        {tags.map((tag) => (
+          <option key={tag} value={tag}>
+            {tag}
+          </option>
+        ))}
+      </DropdownSelect>
     </FilterWrapper>
   );
 }
