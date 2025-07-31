@@ -20,6 +20,23 @@ export const FilterWrapper = styled.section`
   }
 `;
 
+export const FilterContainer = styled.div`
+  width: 100%;
+`;
+
+export const ToggleButton = styled.button`
+  width: 100%;
+  padding: 12px;
+  background-color: ${luminexTheme.colors.primary};
+  color: ${luminexTheme.colors.white};
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 12px;
+`;
+
 export const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;

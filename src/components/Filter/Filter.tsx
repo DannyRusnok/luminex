@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { sanityClient } from '../../sanityClient';
-import { FilterWrapper, CheckboxLabel } from './styled';
+import {
+  FilterContainer,
+  FilterWrapper,
+  CheckboxLabel,
+  ToggleButton,
+} from './styled';
 
 interface FilterProps {
   selectedTags: string[];
@@ -9,6 +14,7 @@ interface FilterProps {
 
 export default function Filter({ selectedTags, onChange }: FilterProps) {
   const [tags, setTags] = useState<string[]>([]);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     async function fetchTags() {
@@ -38,19 +44,26 @@ export default function Filter({ selectedTags, onChange }: FilterProps) {
   };
 
   return (
-    <FilterWrapper>
-      {tags.map((tag) => (
-        <CheckboxLabel key={tag}>
-          <input
-            type="checkbox"
-            id={tag}
-            name={tag}
-            checked={selectedTags.includes(tag)}
-            onChange={() => handleCheckboxChange(tag)}
-          />
-          <span>{tag}</span>
-        </CheckboxLabel>
-      ))}
-    </FilterWrapper>
+    <FilterContainer>
+      <ToggleButton onClick={() => setOpen((o) => !o)} aria-expanded={open}>
+        Filtr {open ? '▲' : '▼'}
+      </ToggleButton>
+      {open && (
+        <FilterWrapper>
+          {tags.map((tag) => (
+            <CheckboxLabel key={tag}>
+              <input
+                type="checkbox"
+                id={tag}
+                name={tag}
+                checked={selectedTags.includes(tag)}
+                onChange={() => handleCheckboxChange(tag)}
+              />
+              <span>{tag}</span>
+            </CheckboxLabel>
+          ))}
+        </FilterWrapper>
+      )}
+    </FilterContainer>
   );
 }
