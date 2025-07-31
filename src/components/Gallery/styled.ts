@@ -50,3 +50,10 @@ export const TagsWrapper = styled.div`
   font-weight: 600;
   text-align: left;
 `;
+
+export const LikeButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+`;
