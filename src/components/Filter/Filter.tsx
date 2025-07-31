@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { sanityClient } from '../../sanityClient';
-import { FilterWrapper, DropdownSelect } from './styled';
+import {
+  FilterWrapper,
+  CheckboxLabel,
+  ToggleButton,
+  ArrowIcon,
+  TagsWrapper,
+} from './styled';
+import { ArrowUpIcon } from '../ArrowUpIcon';
 
 interface FilterProps {
   selectedTags: string[];
@@ -9,6 +16,7 @@ interface FilterProps {
 
 export default function Filter({ selectedTags, onChange }: FilterProps) {
   const [tags, setTags] = useState<string[]>([]);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     async function fetchTags() {
@@ -29,25 +37,38 @@ export default function Filter({ selectedTags, onChange }: FilterProps) {
     fetchTags();
   }, []);
 
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    if (value === '') {
-      onChange([]);
+  const handleCheckboxChange = (tag: string) => {
+    if (selectedTags.includes(tag)) {
+      onChange(selectedTags.filter((t) => t !== tag));
     } else {
-      onChange([value]);
+      onChange([...selectedTags, tag]);
     }
   };
 
   return (
     <FilterWrapper>
-      <DropdownSelect value={selectedTags[0] || ''} onChange={handleSelectChange}>
-        <option value="">All</option>
-        {tags.map((tag) => (
-          <option key={tag} value={tag}>
-            {tag}
-          </option>
-        ))}
-      </DropdownSelect>
+      <ToggleButton onClick={() => setOpen((o) => !o)} aria-expanded={open}>
+        Filtrovat
+        <ArrowIcon $open={open}>
+          <ArrowUpIcon />
+        </ArrowIcon>
+      </ToggleButton>
+      {open && (
+        <TagsWrapper>
+          {tags.map((tag) => (
+            <CheckboxLabel key={tag}>
+              <input
+                type="checkbox"
+                id={tag}
+                name={tag}
+                checked={selectedTags.includes(tag)}
+                onChange={() => handleCheckboxChange(tag)}
+              />
+              <span>{tag}</span>
+            </CheckboxLabel>
+          ))}
+        </TagsWrapper>
+      )}
     </FilterWrapper>
   );
 }
