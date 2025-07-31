@@ -17,8 +17,8 @@ function App() {
       <Layout>
         <Navbar />
         <HeroSection />
-        <Exhibitions />
         <Portfolio />
+        <Exhibitions />
         <Contact />
         <Footer />
       </Layout>
