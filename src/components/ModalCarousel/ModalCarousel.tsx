@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ModalImageSkeleton from './ModalImageSkeleton';
+import { CloseIcon } from '../CloseIcon';
+import { luminexTheme } from '../../theme';
 import {
   ModalOverlay,
   ModalBox,
@@ -24,6 +26,7 @@ export default function ModalCarousel({ images, startIndex, onClose }: Props) {
   const [current, setCurrent] = useState<number>(startIndex);
   const [loaded, setLoaded] = useState<boolean[]>(images.map(() => false));
   const startXRef = useRef<number>(0);
+  const startYRef = useRef<number>(0);
 
   const next = () => setCurrent((c) => (c + 1) % images.length);
   const prev = () => setCurrent((c) => (c - 1 + images.length) % images.length);
@@ -40,14 +43,23 @@ export default function ModalCarousel({ images, startIndex, onClose }: Props) {
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     startXRef.current = e.touches[0].clientX;
+    startYRef.current = e.touches[0].clientY;
   };
 
   const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
     const endX = e.changedTouches[0].clientX;
-    const diff = startXRef.current - endX;
-    if (diff > 50) {
+    const endY = e.changedTouches[0].clientY;
+    const diffX = startXRef.current - endX;
+    const diffY = startYRef.current - endY;
+
+    if (diffY > 50 && Math.abs(diffY) > Math.abs(diffX)) {
+      onClose();
+      return;
+    }
+
+    if (diffX > 50) {
       next();
-    } else if (diff < -50) {
+    } else if (diffX < -50) {
       prev();
     }
   };
@@ -60,7 +72,7 @@ export default function ModalCarousel({ images, startIndex, onClose }: Props) {
     <ModalOverlay onClick={onClose}>
       <ModalBox onClick={(e) => e.stopPropagation()}>
         <CloseButton onClick={onClose} aria-label="close">
-          &times;
+          <CloseIcon color={luminexTheme.colors.primary} />
         </CloseButton>
         <Carousel onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
           <NavButton onClick={prev} aria-label="previous">

@@ -60,8 +60,10 @@ export const CloseButton = styled.button`
   right: 5px;
   background: none;
   border: none;
-  font-size: 24px;
   cursor: pointer;
+  width: 48px;
+  height: 48px;
+  color: ${luminexTheme.colors.primary};
 `;
 
 export const Carousel = styled.div`
