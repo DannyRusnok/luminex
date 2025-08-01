@@ -7,10 +7,20 @@ export default function ScrollToTopButton() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setVisible(window.scrollY > 100);
+      const noModal = !document.body.classList.contains('modal-open');
+      setVisible(window.scrollY > 100 && noModal);
     };
+
+    const observer = new MutationObserver(handleScroll);
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    // set initial state
+    handleScroll();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   const scrollToTop = () => {
@@ -18,7 +28,12 @@ export default function ScrollToTopButton() {
   };
 
   return (
-    <Button onClick={scrollToTop} $visible={visible} aria-label="scroll to top">
+    <Button
+      onClick={scrollToTop}
+      $visible={visible}
+      aria-label="scroll to top"
+      className="scroll-to-top"
+    >
       <ArrowUpIcon color="white" />
     </Button>
   );
