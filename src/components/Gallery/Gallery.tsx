@@ -1,5 +1,11 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { GalleryWrapper, GalleryItem, TagsWrapper, PortfolioHeading, LikeButton } from './styled';
+import {
+  GalleryWrapper,
+  GalleryItem,
+  TagsWrapper,
+  PortfolioHeading,
+  LikeButton,
+} from './styled';
 import ImageSkeleton from './ImageSkeleton';
 import ModalCarousel from '../ModalCarousel/ModalCarousel'; // ModalCarousel nyní očekává images: {url, description}[]
 import GalleryImage from '../GalleryImage/GalleryImage';
@@ -12,8 +18,23 @@ interface GalleryProps {
   selectedTags: string[];
 }
 
+interface ModalImage {
+  url: string;
+  description?: string;
+}
+
+interface GalleryImageData {
+  _id: string;
+  title?: string;
+  description?: string;
+  tags?: string[];
+  url: string;
+  additionalImages?: ModalImage[];
+}
+
 export default function Gallery({ selectedTags }: GalleryProps) {
-  const [images, setImages] = useState<any[]>([]);
+  const [images, setImages] = useState<GalleryImageData[]>([]);
+  const [modalImages, setModalImages] = useState<ModalImage[]>([]);
   const [modalIndex, setModalIndex] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [loaded, setLoaded] = useState<Record<string, boolean>>({});
@@ -38,7 +59,11 @@ export default function Gallery({ selectedTags }: GalleryProps) {
         title,
         description,
         tags,
-        "url": image.asset->url
+        "url": image.asset->url,
+        additionalImages[]{
+          "url": asset->url,
+          description
+        }
       }`;
       const data = await (sanityClient as any).fetch(query);
       setImages(data);
@@ -61,8 +86,12 @@ export default function Gallery({ selectedTags }: GalleryProps) {
   }, []);
 
   const handleClick = (index: number) => {
-    setModalIndex(index);
-    setModalOpen(true);
+    const img = filteredImages[index];
+    if (img?.additionalImages && img.additionalImages.length > 0) {
+      setModalImages(img.additionalImages);
+      setModalIndex(0);
+      setModalOpen(true);
+    }
   };
 
   const handleTap = (index: number, id: string) => {
@@ -120,9 +149,9 @@ export default function Gallery({ selectedTags }: GalleryProps) {
           </GalleryItem>
         ))}
       </GalleryWrapper>
-      {modalOpen && filteredImages[modalIndex] && (
+      {modalOpen && modalImages.length > 0 && (
         <ModalCarousel
-          images={filteredImages.map((img) => ({ url: img.url, description: img.description }))}
+          images={modalImages}
           startIndex={modalIndex}
           onClose={() => setModalOpen(false)}
         />
