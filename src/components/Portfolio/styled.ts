@@ -6,6 +6,7 @@ export const PortfolioWrapper = styled.div`
   max-width: ${luminexTheme.breakpoints.desktop};
   margin: 0 auto;
   margin: 40px auto 0 auto;
+  border-bottom: 1px solid ${luminexTheme.colors.primary};
 `;
 
 export const PortfolioTitle = styled.h2`
