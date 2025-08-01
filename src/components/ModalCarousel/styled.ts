@@ -32,6 +32,8 @@ export const ModalOverlay = styled.div<{ closing?: boolean }>`
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  /* Prevent background scrolling while interacting with the modal */
+  touch-action: none;
   animation: ${({ closing }) =>
     closing
       ? css`
@@ -108,6 +110,8 @@ export const Carousel = styled.div`
   justify-content: center;
   width: 100%;
   box-sizing: border-box;
+  /* Disable native scrolling to allow custom swipe handling */
+  touch-action: none;
 `;
 
 export const NavButton = styled.button`
