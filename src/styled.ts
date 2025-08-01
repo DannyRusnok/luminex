@@ -5,6 +5,8 @@ export const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
   }
 
+
+  html.modal-open,
   body.modal-open {
     overflow: hidden;
     touch-action: none;
