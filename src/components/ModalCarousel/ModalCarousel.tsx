@@ -25,21 +25,29 @@ interface Props {
 export default function ModalCarousel({ images, startIndex, onClose }: Props) {
   const [current, setCurrent] = useState<number>(startIndex);
   const [loaded, setLoaded] = useState<boolean[]>(images.map(() => false));
+  const [closing, setClosing] = useState(false);
   const startXRef = useRef<number>(0);
   const startYRef = useRef<number>(0);
+  const startClose = () => setClosing(true);
 
   const next = () => setCurrent((c) => (c + 1) % images.length);
   const prev = () => setCurrent((c) => (c - 1 + images.length) % images.length);
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') startClose();
       if (e.key === 'ArrowRight') next();
       if (e.key === 'ArrowLeft') prev();
     };
     document.addEventListener('keydown', handleKey);
     return () => document.removeEventListener('keydown', handleKey);
-  }, [onClose]);
+  }, []);
+
+  useEffect(() => {
+    if (!closing) return;
+    const timeout = setTimeout(() => onClose(), 300);
+    return () => clearTimeout(timeout);
+  }, [closing, onClose]);
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     startXRef.current = e.touches[0].clientX;
@@ -53,7 +61,7 @@ export default function ModalCarousel({ images, startIndex, onClose }: Props) {
     const diffY = startYRef.current - endY;
 
     if (diffY > 50 && Math.abs(diffY) > Math.abs(diffX)) {
-      onClose();
+      startClose();
       return;
     }
 
@@ -69,9 +77,9 @@ export default function ModalCarousel({ images, startIndex, onClose }: Props) {
   };
 
   return (
-    <ModalOverlay onClick={onClose}>
-      <ModalBox onClick={(e) => e.stopPropagation()}>
-        <CloseButton onClick={onClose} aria-label="close">
+    <ModalOverlay onClick={startClose} closing={closing}>
+      <ModalBox onClick={(e) => e.stopPropagation()} closing={closing}>
+        <CloseButton onClick={startClose} aria-label="close">
           <CloseIcon color={luminexTheme.colors.primary} />
         </CloseButton>
         <Carousel onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>

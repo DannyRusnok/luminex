@@ -1,7 +1,27 @@
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import { luminexTheme } from '../../theme';
 
-export const ModalOverlay = styled.div`
+const fadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
+
+const fadeOut = keyframes`
+  from { opacity: 1; }
+  to { opacity: 0; }
+`;
+
+const scaleIn = keyframes`
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+`;
+
+const scaleOut = keyframes`
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(0.8); opacity: 0; }
+`;
+
+export const ModalOverlay = styled.div<{ closing?: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
@@ -12,9 +32,17 @@ export const ModalOverlay = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  animation: ${({ closing }) =>
+    closing
+      ? css`
+          ${fadeOut} 0.3s forwards
+        `
+      : css`
+          ${fadeIn} 0.3s forwards
+        `};
 `;
 
-export const ModalBox = styled.div`
+export const ModalBox = styled.div<{ closing?: boolean }>`
   position: relative;
   background: #f3e5f5;
   padding: 0;
@@ -30,6 +58,14 @@ export const ModalBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  animation: ${({ closing }) =>
+    closing
+      ? css`
+          ${scaleOut} 0.3s forwards
+        `
+      : css`
+          ${scaleIn} 0.3s forwards
+        `};
 
   @media (min-width: ${luminexTheme.breakpoints.tablet}) {
     width: ${luminexTheme.breakpoints.tablet};
