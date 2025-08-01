@@ -5,6 +5,7 @@ import {
   TagsWrapper,
   PortfolioHeading,
   LikeButton,
+  NoResultsMessage,
 } from './styled';
 import ImageSkeleton from './ImageSkeleton';
 import ModalCarousel from '../ModalCarousel/ModalCarousel'; // ModalCarousel nyní očekává images: {url, description}[]
@@ -125,6 +126,9 @@ export default function Gallery({ selectedTags }: GalleryProps) {
   return (
     <>
       <GalleryWrapper>
+        {filteredImages.length === 0 && (
+          <NoResultsMessage>Nic nenalezeno.</NoResultsMessage>
+        )}
         {filteredImages.map((img, index) => (
           <GalleryItem key={img._id}>
             <h2>{img.title || `Foto ${index + 1}`}</h2>

@@ -57,3 +57,12 @@ export const LikeButton = styled.button`
   cursor: pointer;
   padding: 8px 0;
 `;
+
+export const NoResultsMessage = styled.p`
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: ${luminexTheme.colors.primary};
+  margin: 40px 0;
+`;
