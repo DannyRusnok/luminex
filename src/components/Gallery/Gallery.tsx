@@ -21,10 +21,13 @@ export default function Gallery({ selectedTags }: GalleryProps) {
   const tapTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
+    const html = document.documentElement;
     if (modalOpen) {
       document.body.classList.add('modal-open');
+      html.classList.add('modal-open');
     } else {
       document.body.classList.remove('modal-open');
+      html.classList.remove('modal-open');
     }
   }, [modalOpen]);
 
